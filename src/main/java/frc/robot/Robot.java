@@ -99,6 +99,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     //thisIsMyTalonSRX.set(ControlMode.PercentOutput, oi.getLeftXAxis());
     Scheduler.getInstance().run();
+    System.out.println("Left Velocity:    " + kDrivetrain.getLeftVelocityFt());
+    System.out.println("Right Velocity:   " + kDrivetrain.getRightVelocityFt());
   }
 
   /**
