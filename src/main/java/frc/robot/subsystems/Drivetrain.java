@@ -20,20 +20,32 @@ public class Drivetrain extends Subsystem{
         mLeftB.setInverted(true);
         mRightA.setInverted(false);
         mRightB.setInverted(false);
-        mLeftA.
-        mRightA.
+        mLeftA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.primaryPIDIDX, Constants.timoutMS);
+        mRightA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.primaryPIDIDX, Constants.timoutMS);
+        mLeftA.setSensorPhase(false);
+        mRightA.setSensorPhase(false);
+        mLeftA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.primaryPIDIDX, Constants.timoutMS);
     }
+
     public void initDefaultCommand(){
         setDefaultCommand(new Drive());
     }
-    public double getRightVelocityFt(){
-        return mRightA.getSelectedSensorVelocity(Constants.primaryPIDIDX);
-    }
-    public double getLeftVelocityFt(){
+    
+    public double getLeftVelocity() {
         return mLeftA.getSelectedSensorVelocity(Constants.primaryPIDIDX);
     }
+
+    public double getRightVelocity() {
+        return mRightA.getSelectedSensorVelocity(Constants.primaryPIDIDX);
+    }
+
     public void setVelocity(double left, double right){
         mLeftA.set(ControlMode.Velocity, left*22);
         mRightA.set(ControlMode.Velocity, right*22);
+    }
+
+    public void setPower(double left, double right){
+        mLeftA.set(ControlMode.PercentOutput, left);
+        mRightA.set(ControlMode.PercentOutput, right);
     }
 }

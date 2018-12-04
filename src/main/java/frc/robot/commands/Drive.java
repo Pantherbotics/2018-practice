@@ -2,6 +2,7 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.*;
 
 public class Drive extends Command{
     public Drive(){
@@ -15,7 +16,7 @@ public class Drive extends Command{
         double steering = Robot.oi.getRightXAxis();
         double left = (throttle - steering);
         double right = (throttle + steering);
-        Robot.kDrivetrain.setVelocity(left, right);
+        Robot.kDrivetrain.setPower(left, right);
     }
     protected boolean isFinished(){
         return false;

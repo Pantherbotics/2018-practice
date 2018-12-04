@@ -6,6 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 //import com.ctre.phoenix.motorcontrol.can.*;                     //MAY NEED
 //import com.ctre.phoenix.motorcontrol.ControlMode;               //MAY NEED
 //import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -56,6 +58,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    System.out.println("Left Velocity" + kDrivetrain.getLeftVelocity());
+    System.out.println("Right Velocity " + kDrivetrain.getRightVelocity());
   }
 
   /**
@@ -98,9 +102,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //thisIsMyTalonSRX.set(ControlMode.PercentOutput, oi.getLeftXAxis());
-    Scheduler.getInstance().run();
-    System.out.println("Left Velocity:    " + kDrivetrain.getLeftVelocityFt());
-    System.out.println("Right Velocity:   " + kDrivetrain.getRightVelocityFt());
   }
 
   /**
