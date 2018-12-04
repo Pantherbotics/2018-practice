@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   
   public static final Drivetrain kDrivetrain = new Drivetrain();
+  public static final Elevator kElevator = new Elevator();
   
   /**
    * This function is run when the robot is first started up and should be
@@ -97,10 +98,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    //thisIsMyTalonSRX.set(ControlMode.PercentOutput, oi.getLeftXAxis());
+    double power = oi.getElevator();
+    kElevator.setVelocity(-power);
+    System.out.println(kElevator.getPos());
     Scheduler.getInstance().run();
-    System.out.println("Left Velocity:    " + kDrivetrain.getLeftVelocityFt());
-    System.out.println("Right Velocity:   " + kDrivetrain.getRightVelocityFt());
   }
 
   /**

@@ -1,13 +1,17 @@
 //this code was made by team 3863 FIRST Robotics, Newbury Park, CA 91320
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
-//import edu.wpi.first.wpilibj.command.PrintCommand;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.Constants;
+import frc.robot.commands.*;
 
 public class OI{
     public Joystick stick = new Joystick(Constants.kJoystickPort);
-    public OI(){ //CONTRUCTOR
-
+    public Joystick newstick = new Joystick(1);
+    public Button ZeroElevator = new JoystickButton(newstick, Constants.kZeroElevator);
+    public OI(){
+        ZeroElevator.whenPressed(new ZeroElevator());
     }
     public double getLeftXAxis(){
         return stick.getRawAxis(Constants.kJoystickLeftXAxis);
@@ -20,6 +24,9 @@ public class OI{
     }
     public double getRightXAxis(){
         return stick.getRawAxis(Constants.kJoystickRightXAxis);
+    }
+    public double getElevator(){
+        return newstick.getRawAxis(Constants.kJoystickLeftYAxis);
     }
 }
 
