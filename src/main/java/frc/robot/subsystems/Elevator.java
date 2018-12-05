@@ -23,7 +23,7 @@ public class Elevator extends Subsystem{
     public void initDefaultCommand(){
 
     }
-    public double getPos(){
+    public int getPos(){
         return mElevator.getSelectedSensorPosition(Constants.primaryPIDIDX);
     }
     public void setPower(double power){

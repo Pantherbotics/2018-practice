@@ -105,7 +105,7 @@ public class Robot extends TimedRobot {
     int pov = oi.getPOV();
     switch(pov){
       case 0: //UP
-        kElevator.setPos(100);
+        kElevator.setPos(300);
         return;
       case 90: //RIGHT
         kElevator.setPos(200);
@@ -115,7 +115,7 @@ public class Robot extends TimedRobot {
         c.start();
         return;
       case 270: //LEFT
-        kElevator.setPos(300);
+        kElevator.setPos(100);
         return;
     }
     Scheduler.getInstance().run();
