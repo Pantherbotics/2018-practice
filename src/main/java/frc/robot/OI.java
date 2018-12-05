@@ -4,14 +4,14 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.Constants;
-import frc.robot.commands.*;
+//import frc.robot.commands.*;
 
 public class OI{
     public Joystick stick = new Joystick(Constants.kJoystickPort);
     public Joystick newstick = new Joystick(1);
-    public Button ZeroElevator = new JoystickButton(newstick, Constants.kZeroElevator);
+    public Button ZeroElevator = new JoystickButton(stick, Constants.kZeroElevator);
     public OI(){
-        ZeroElevator.whenPressed(new ZeroElevator());
+        //ZeroElevator.whenPressed(new ZeroElevator());
     }
     public double getLeftXAxis(){
         return stick.getRawAxis(Constants.kJoystickLeftXAxis);
@@ -25,8 +25,11 @@ public class OI{
     public double getRightXAxis(){
         return stick.getRawAxis(Constants.kJoystickRightXAxis);
     }
-    public double getElevator(){
-        return newstick.getRawAxis(Constants.kJoystickLeftYAxis);
+    public double get2ndStickLeftY(){
+        return stick.getRawAxis(Constants.kJoystickLeftYAxis);
+    }
+    public int getPOV(){
+        return stick.getPOV();
     }
 }
 

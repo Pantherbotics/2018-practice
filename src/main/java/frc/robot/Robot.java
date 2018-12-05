@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.*;
+import frc.robot.commands.*;
+import edu.wpi.first.wpilibj.command.Command;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -57,6 +59,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    System.out.println(oi.getPOV());
   }
 
   /**
@@ -98,10 +101,30 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    double power = oi.getElevator();
-    kElevator.setVelocity(-power);
     System.out.println(kElevator.getPos());
+    int pov = oi.getPOV();
+    switch(pov){
+      case 0:
+        kElevator.setPos(100);
+        return;
+      case 90:
+        kElevator.setPos(200);
+        return;
+      case 180:
+        Command c = new ZeroElevator();
+        c.start();
+        return;
+      case 270:
+        kElevator.setPos(300);
+        return;
+    }
     Scheduler.getInstance().run();
+  }
+ 
+  @Override
+  public void teleopInit() {
+    Command c = new ZeroElevator();
+    c.start();
   }
 
   /**

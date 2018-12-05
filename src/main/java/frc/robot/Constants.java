@@ -27,7 +27,8 @@ public class Constants{
     public static double driveKI = 0.0;
     public static double driveKD = 0.0;
     public static double driveKF = 1023.0/23.0;
-    public static double elevatorKP = 8.0;
+    //Elevator PID
+    public static double elevatorKP = 4.0;
     public static double elevatorKI = 0.0;
     public static double elevatorKD = 0.0;
     public static double elevatorKF = 0.0; //not using

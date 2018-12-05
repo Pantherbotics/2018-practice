@@ -26,8 +26,11 @@ public class Elevator extends Subsystem{
     public double getPos(){
         return mElevator.getSelectedSensorPosition(Constants.primaryPIDIDX);
     }
-    public void setVelocity(double power){
+    public void setPower(double power){
         mElevator.set(ControlMode.PercentOutput, power);
+    }
+    public void setPos(int pos){
+        mElevator.set(ControlMode.Position, pos);
     }
     public boolean getLimitSwitch(){
         return mElevator.getSensorCollection().isRevLimitSwitchClosed();
@@ -35,5 +38,4 @@ public class Elevator extends Subsystem{
     public void setElevatorEncoder(int pos){
         mElevator.setSelectedSensorPosition(pos, Constants.primaryPIDIDX, Constants.timoutMS);
     }
-    //set encoder pos, get limit switch
 }
