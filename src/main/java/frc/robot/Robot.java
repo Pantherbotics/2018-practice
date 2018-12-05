@@ -104,17 +104,17 @@ public class Robot extends TimedRobot {
     System.out.println(kElevator.getPos());
     int pov = oi.getPOV();
     switch(pov){
-      case 0:
+      case 0: //UP
         kElevator.setPos(100);
         return;
-      case 90:
+      case 90: //RIGHT
         kElevator.setPos(200);
         return;
-      case 180:
+      case 180: //DOWN
         Command c = new ZeroElevator();
         c.start();
         return;
-      case 270:
+      case 270: //LEFT
         kElevator.setPos(300);
         return;
     }
