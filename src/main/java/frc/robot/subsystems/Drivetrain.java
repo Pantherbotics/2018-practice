@@ -25,6 +25,17 @@ public class Drivetrain extends Subsystem{
         mLeftA.setSensorPhase(false);
         mRightA.setSensorPhase(false);
         mLeftA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.primaryPIDIDX, Constants.timoutMS);
+        mRightA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.primaryPIDIDX, Constants.timoutMS);
+        mLeftA.config_kP(Constants.primaryPIDIDX, Constants.driveKP, Constants.timoutMS);
+        mLeftA.config_kI(Constants.primaryPIDIDX, Constants.driveKI, Constants.timoutMS);
+        mLeftA.config_kD(Constants.primaryPIDIDX, Constants.driveKD, Constants.timoutMS);
+        mLeftA.config_kF(Constants.primaryPIDIDX, Constants.driveKF, Constants.timoutMS);
+        mRightA.config_kP(Constants.primaryPIDIDX, Constants.driveKP, Constants.timoutMS);
+        mRightA.config_kI(Constants.primaryPIDIDX, Constants.driveKI, Constants.timoutMS);
+        mRightA.config_kD(Constants.primaryPIDIDX, Constants.driveKD, Constants.timoutMS);
+        mRightA.config_kF(Constants.primaryPIDIDX, Constants.driveKF, Constants.timoutMS);
+        mLeftA.configSelectedFeedbackCoefficient(1.0, Constants.primaryPIDIDX, Constants.timoutMS);
+        mRightA.configSelectedFeedbackCoefficient(1.0, Constants.primaryPIDIDX, Constants.timoutMS);
     }
 
     public void initDefaultCommand(){

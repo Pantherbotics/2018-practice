@@ -20,10 +20,10 @@ public class Constants{
     public static int kRightA = 2;
     public static int kRightB = 3;
     //Drive PID
-    public static double driveKP = 8.0;
+    public static double driveKP = 0.0;
     public static double driveKI = 0.0;
     public static double driveKD = 0.0;
-    public static double driveKF = 1023.0/23.0;
+    public static double driveKF = 0.0;
     public static int timoutMS = 10;
     public static int primaryPIDIDX = 0;
 }
