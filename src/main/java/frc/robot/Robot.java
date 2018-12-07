@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
+
 //import com.ctre.phoenix.motorcontrol.can.*;                     //MAY NEED
 //import com.ctre.phoenix.motorcontrol.ControlMode;               //MAY NEED
 //import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -30,7 +31,11 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  
+
+  public double oldLeftVelocity;
+  public double oldRightVelocity;
+  public double leftVel;
+  public double rightVel;
   public static final Drivetrain kDrivetrain = new Drivetrain();
   
   /**
@@ -39,6 +44,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    double oldLeftVelocity = kDrivetrain.getLeftVelocity();
+    double oldRightVelocity = kDrivetrain.getRightVelocity();
     m_chooser.addDefault("Default Auto", kDefaultAuto);
     m_chooser.addObject("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
@@ -56,6 +63,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    System.out.println("Left Velocity " + kDrivetrain.getLeftVelocity());
+    System.out.println("Right Velocity " + kDrivetrain.getRightVelocity());
   }
 
   /**
@@ -99,8 +108,16 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     //thisIsMyTalonSRX.set(ControlMode.PercentOutput, oi.getLeftXAxis());
     Scheduler.getInstance().run();
-    System.out.println("Left Velocity:    " + kDrivetrain.getLeftVelocityFt());
-    System.out.println("Right Velocity:   " + kDrivetrain.getRightVelocityFt());
+      if (kDrivetrain.getLeftVelocity() >= oldLeftVelocity){
+          leftVel= kDrivetrain.getLeftVelocity();
+      }
+      if (kDrivetrain.getRightVelocity() >= oldRightVelocity){
+        rightVel = kDrivetrain.getRightVelocity();
+      }
+      oldLeftVelocity = kDrivetrain.getLeftVelocity();
+      oldRightVelocity = kDrivetrain.getRightVelocity();
+      System.out.println(leftVel);
+      System.out.println(rightVel);
   }
 
   /**

@@ -15,7 +15,7 @@ public class Drive extends Command{
         double steering = Robot.oi.getRightXAxis();
         double left = (throttle - steering);
         double right = (throttle + steering);
-        Robot.kDrivetrain.setVelocity(left, right);
+        Robot.kDrivetrain.setPower(left, right);
     }
     protected boolean isFinished(){
         return false;
