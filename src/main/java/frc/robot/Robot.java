@@ -65,6 +65,8 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     System.out.println("Left Velocity " + kDrivetrain.getLeftVelocity());
     System.out.println("Right Velocity " + kDrivetrain.getRightVelocity());
+    SmartDashboard.putNumber("Left Velocity", kDrivetrain.getLeftVelocity());
+    SmartDashboard.putNumber("Right Velocity", kDrivetrain.getRightVelocity());
   }
 
   /**

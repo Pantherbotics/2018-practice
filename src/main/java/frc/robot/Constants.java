@@ -7,7 +7,7 @@ public class Constants{
     --6 in wheel conversion--
     (60*Math.PI*ticks)/6144
     */
-
+//  1023/794
     //Robot Joystick Constants
     public static int kJoystickPort = 0;
     public static int kJoystickLeftXAxis = 0;
@@ -23,7 +23,8 @@ public class Constants{
     public static double driveKP = 0.0;
     public static double driveKI = 0.0;
     public static double driveKD = 0.0;
-    public static double driveKF = 0.0;
+    public static double driveKF = 1.28841309824;
     public static int timoutMS = 10;
     public static int primaryPIDIDX = 0;
+    public static int kmaxSpeed = 794;
 }

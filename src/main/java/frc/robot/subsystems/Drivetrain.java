@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.commands.*;
 
@@ -51,12 +52,14 @@ public class Drivetrain extends Subsystem{
     }
 
     public void setVelocity(double left, double right){
-        mLeftA.set(ControlMode.Velocity, left*22);
-        mRightA.set(ControlMode.Velocity, right*22);
+        mLeftA.set(ControlMode.Velocity, left*Constants.kmaxSpeed);
+        mRightA.set(ControlMode.Velocity, right*Constants.kmaxSpeed);
     }
 
     public void setPower(double left, double right){
         mLeftA.set(ControlMode.PercentOutput, left);
         mRightA.set(ControlMode.PercentOutput, right);
+        SmartDashboard.putNumber("Left Power", left);
+        SmartDashboard.putNumber("Right Power", right);
     }
 }
