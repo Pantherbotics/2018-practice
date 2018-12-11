@@ -6,6 +6,7 @@ import frc.robot.Robot;
 public class Drive extends Command{
     public Drive(){
         requires(Robot.kDrivetrain);
+        //requires(Robot.kElevator);
     }
     protected void initialize(){
         
@@ -15,7 +16,8 @@ public class Drive extends Command{
         double steering = Robot.oi.getRightXAxis();
         double left = (throttle - steering);
         double right = (throttle + steering);
-        Robot.kDrivetrain.setPower(left, right);
+        //Robot.kDrivetrain.setPower(left, right);
+        //Robot.kElevator.setPower(throttle);
     }
     protected boolean isFinished(){
         return false;

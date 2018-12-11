@@ -17,6 +17,9 @@ public class Elevator extends Subsystem{
         mElevator.config_kP(Constants.primaryPIDIDX, Constants.elevatorKP, Constants.timoutMS);
         mElevator.config_kI(Constants.primaryPIDIDX, Constants.elevatorKI, Constants.timoutMS);
         mElevator.config_kD(Constants.primaryPIDIDX, Constants.elevatorKD, Constants.timoutMS);
+        mElevator.config_kF(Constants.primaryPIDIDX, Constants.elevatorKF, Constants.timoutMS);           
+        mElevator.configMotionCruiseVelocity(Constants.elevatorCruiseSpeed, Constants.timoutMS);          
+        mElevator.configMotionAcceleration(Constants.elevatorAccelerationSpeed, Constants.timoutMS);      
         mElevator.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.primaryPIDIDX, Constants.timoutMS);
         mElevator.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
     }
@@ -26,11 +29,15 @@ public class Elevator extends Subsystem{
     public int getPos(){
         return mElevator.getSelectedSensorPosition(Constants.primaryPIDIDX);
     }
+    public int getVelocity(){
+        return mElevator.getSelectedSensorVelocity(Constants.primaryPIDIDX);
+    }
+
     public void setPower(double power){
         mElevator.set(ControlMode.PercentOutput, power);
     }
     public void setPos(int pos){
-        mElevator.set(ControlMode.Position, pos);
+        mElevator.set(ControlMode.MotionMagic, pos);
     }
     public boolean getLimitSwitch(){
         return mElevator.getSensorCollection().isRevLimitSwitchClosed();

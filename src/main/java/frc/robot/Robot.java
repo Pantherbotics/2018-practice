@@ -38,6 +38,7 @@ public class Robot extends TimedRobot {
   public double oldRightVelocity;
   public double leftVel;
   public double rightVel;
+  public double lastv;
   public static final Drivetrain kDrivetrain = new Drivetrain();
   public static final Elevator kElevator = new Elevator();
   
@@ -52,6 +53,7 @@ public class Robot extends TimedRobot {
     m_chooser.addDefault("Default Auto", kDefaultAuto);
     m_chooser.addObject("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    lastv = 0.0;
   }
 
   /**
@@ -66,9 +68,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    System.out.println(oi.getPOV());
-    System.out.println("Left Velocity " + kDrivetrain.getLeftVelocity());
-    System.out.println("Right Velocity " + kDrivetrain.getRightVelocity());
+    //System.out.println(oi.getPOV());
+    //System.out.println("Left Velocity " + kDrivetrain.getLeftVelocity());
+    //System.out.println("Right Velocity " + kDrivetrain.getRightVelocity());
   }
 
   /**
@@ -110,17 +112,17 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    System.out.println(kElevator.getPos());
+    //System.out.println(kElevator.getPos());
     int pov = oi.getPOV();
     switch(pov){
       case 0:     //UP
-        kElevator.setPos(300);
+        kElevator.setPos(2000);
         return;
       case 90:    //RIGHT
-        kElevator.setPos(200);
+        kElevator.setPos(1250);
         return;
       case 270:   //LEFT
-        kElevator.setPos(100);
+        kElevator.setPos(750);
         return;
       case 180:   //DOWN
         Command c = new ZeroElevator();
@@ -142,8 +144,8 @@ public class Robot extends TimedRobot {
       }
       oldLeftVelocity = kDrivetrain.getLeftVelocity();
       oldRightVelocity = kDrivetrain.getRightVelocity();
-      System.out.println(leftVel);
-      System.out.println(rightVel);
+      //System.out.println(leftVel);
+      //System.out.println(rightVel);
   }
 
   /**
