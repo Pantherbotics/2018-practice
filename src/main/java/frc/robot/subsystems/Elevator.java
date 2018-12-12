@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 public class Elevator extends Subsystem{
     private TalonSRX mElevator = new TalonSRX(Constants.kElevatorID);
@@ -22,6 +23,7 @@ public class Elevator extends Subsystem{
         mElevator.configMotionAcceleration(Constants.elevatorAccelerationSpeed, Constants.timoutMS);      
         mElevator.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.primaryPIDIDX, Constants.timoutMS);
         mElevator.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
+        mElevator.setNeutralMode(NeutralMode.Brake);
     }
     public void initDefaultCommand(){
 

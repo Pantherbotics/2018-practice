@@ -48,8 +48,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    double oldLeftVelocity = kDrivetrain.getLeftVelocity();
-    double oldRightVelocity = kDrivetrain.getRightVelocity();
+    //double oldLeftVelocity = kDrivetrain.getLeftVelocity();
+    //double oldRightVelocity = kDrivetrain.getRightVelocity();
     m_chooser.addDefault("Default Auto", kDefaultAuto);
     m_chooser.addObject("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
@@ -116,13 +116,13 @@ public class Robot extends TimedRobot {
     int pov = oi.getPOV();
     switch(pov){
       case 0:     //UP
-        kElevator.setPos(2000);
+        kElevator.setPos(5000);
         return;
       case 90:    //RIGHT
-        kElevator.setPos(1250);
+        kElevator.setPos(3000);
         return;
       case 270:   //LEFT
-        kElevator.setPos(750);
+        kElevator.setPos(1000);
         return;
       case 180:   //DOWN
         Command c = new ZeroElevator();
