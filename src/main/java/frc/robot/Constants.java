@@ -7,7 +7,10 @@ public class Constants{
     --6 in wheel conversion--
     (60*Math.PI*ticks)/6144
     */
-
+    //Buttons
+    public static int kZeroElevator = 8;
+    public static int kElevatorUp = 4;
+    public static int kElevatorDown= 2;
     //Robot Joystick Constants
     public static int kJoystickPort = 0;
     public static int kJoystickLeftXAxis = 0;
@@ -24,6 +27,19 @@ public class Constants{
     public static double driveKI = 0.0;
     public static double driveKD = 0.0;
     public static double driveKF = 0.0;
+    //Elevator PID with motion magic
+    public static double elevatorKP = 4.0;
+    public static double elevatorKI = 0.0;
+    public static double elevatorKD = 0.0;
+    public static double elevatorKF = (1023.0/273.0); //max talon thing(1023) / max velocity of elevator (273)
+    public static int elevatorCruiseSpeed = 400;
+    public static int elevatorAccelerationSpeed = 300;
+
     public static int timoutMS = 10;
     public static int primaryPIDIDX = 0;
+    //Elevator
+    public static int kElevatorID = 15;
+    //Intake
+    public static int kIntakeLeft = 0;
+    public static int kIntakeRight = 1;
 }

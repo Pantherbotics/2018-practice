@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.*;
+import frc.robot.commands.*;
+import edu.wpi.first.wpilibj.command.Command;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -36,7 +38,9 @@ public class Robot extends TimedRobot {
   public double oldRightVelocity;
   public double leftVel;
   public double rightVel;
+  public double lastv;
   public static final Drivetrain kDrivetrain = new Drivetrain();
+  public static final Elevator kElevator = new Elevator();
   
   /**
    * This function is run when the robot is first started up and should be
@@ -49,6 +53,7 @@ public class Robot extends TimedRobot {
     m_chooser.addDefault("Default Auto", kDefaultAuto);
     m_chooser.addObject("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    lastv = 0.0;
   }
 
   /**
@@ -63,8 +68,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    System.out.println("Left Velocity " + kDrivetrain.getLeftVelocity());
-    System.out.println("Right Velocity " + kDrivetrain.getRightVelocity());
+    //System.out.println(oi.getPOV());
+    //System.out.println("Left Velocity " + kDrivetrain.getLeftVelocity());
+    //System.out.println("Right Velocity " + kDrivetrain.getRightVelocity());
   }
 
   /**
@@ -106,8 +112,30 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    //thisIsMyTalonSRX.set(ControlMode.PercentOutput, oi.getLeftXAxis());
+    //System.out.println(kElevator.getPos());
+    int pov = oi.getPOV();
+    switch(pov){
+      case 0:     //UP
+        kElevator.setPos(2000);
+        return;
+      case 90:    //RIGHT
+        kElevator.setPos(1250);
+        return;
+      case 270:   //LEFT
+        kElevator.setPos(750);
+        return;
+      case 180:   //DOWN
+        Command c = new ZeroElevator();
+        c.start();
+        return;
+    }
     Scheduler.getInstance().run();
+  }
+ 
+  @Override
+  public void teleopInit() {
+    Command c = new ZeroElevator();
+    c.start();
       if (kDrivetrain.getLeftVelocity() >= oldLeftVelocity){
           leftVel= kDrivetrain.getLeftVelocity();
       }
@@ -116,8 +144,8 @@ public class Robot extends TimedRobot {
       }
       oldLeftVelocity = kDrivetrain.getLeftVelocity();
       oldRightVelocity = kDrivetrain.getRightVelocity();
-      System.out.println(leftVel);
-      System.out.println(rightVel);
+      //System.out.println(leftVel);
+      //System.out.println(rightVel);
   }
 
   /**

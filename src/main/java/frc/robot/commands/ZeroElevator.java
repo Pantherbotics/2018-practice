@@ -3,27 +3,21 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Drive extends Command{
-    public Drive(){
-        requires(Robot.kDrivetrain);
+public class ZeroElevator extends Command{
+    public ZeroElevator(){
         //requires(Robot.kElevator);
     }
     protected void initialize(){
         
     }
     protected void execute(){
-        double throttle = Robot.oi.getLeftYAxis();
-        double steering = Robot.oi.getRightXAxis();
-        double left = (throttle - steering);
-        double right = (throttle + steering);
-        //Robot.kDrivetrain.setPower(left, right);
-        //Robot.kElevator.setPower(throttle);
+        Robot.kElevator.setPower(-0.1);
     }
     protected boolean isFinished(){
-        return false;
+        return Robot.kElevator.getLimitSwitch();
     }
     protected void end(){
-
+        Robot.kElevator.setElevatorEncoder(0);
     }
     protected void interrupted(){
 
