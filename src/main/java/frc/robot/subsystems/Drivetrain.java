@@ -17,24 +17,32 @@ public class Drivetrain extends Subsystem{
     public Drivetrain(){
         mLeftB.follow(mLeftA);
         mRightB.follow(mRightA);
+
         mLeftA.setInverted(true);
         mLeftB.setInverted(true);
+
         mRightA.setInverted(false);
         mRightB.setInverted(false);
+
         mLeftA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.primaryPIDIDX, Constants.timoutMS);
         mRightA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.primaryPIDIDX, Constants.timoutMS);
+
         mLeftA.setSensorPhase(false);
         mRightA.setSensorPhase(false);
+
         mLeftA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.primaryPIDIDX, Constants.timoutMS);
         mRightA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.primaryPIDIDX, Constants.timoutMS);
+
         mLeftA.config_kP(Constants.primaryPIDIDX, Constants.driveKP, Constants.timoutMS);
         mLeftA.config_kI(Constants.primaryPIDIDX, Constants.driveKI, Constants.timoutMS);
         mLeftA.config_kD(Constants.primaryPIDIDX, Constants.driveKD, Constants.timoutMS);
         mLeftA.config_kF(Constants.primaryPIDIDX, Constants.driveKF, Constants.timoutMS);
+
         mRightA.config_kP(Constants.primaryPIDIDX, Constants.driveKP, Constants.timoutMS);
         mRightA.config_kI(Constants.primaryPIDIDX, Constants.driveKI, Constants.timoutMS);
         mRightA.config_kD(Constants.primaryPIDIDX, Constants.driveKD, Constants.timoutMS);
         mRightA.config_kF(Constants.primaryPIDIDX, Constants.driveKF, Constants.timoutMS);
+
         mLeftA.configSelectedFeedbackCoefficient(1.0, Constants.primaryPIDIDX, Constants.timoutMS);
         mRightA.configSelectedFeedbackCoefficient(1.0, Constants.primaryPIDIDX, Constants.timoutMS);
     }
@@ -54,6 +62,8 @@ public class Drivetrain extends Subsystem{
     public void setVelocity(double left, double right){
         mLeftA.set(ControlMode.Velocity, left*Constants.kmaxSpeed);
         mRightA.set(ControlMode.Velocity, right*Constants.kmaxSpeed);
+        SmartDashboard.putNumber("Left Set Point", left*Constants.kmaxSpeed);
+        SmartDashboard.putNumber("Right Set Point", right*Constants.kmaxSpeed);
     }
 
     public void setPower(double left, double right){
