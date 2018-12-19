@@ -1,5 +1,7 @@
 //this code was made by team 3863 FIRST Robotics, Newbury Park, CA 91320
 package frc.robot.subsystems;
+import javax.swing.text.Position;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -45,6 +47,9 @@ public class Drivetrain extends Subsystem{
 
         mLeftA.configSelectedFeedbackCoefficient(1.0, Constants.primaryPIDIDX, Constants.timoutMS);
         mRightA.configSelectedFeedbackCoefficient(1.0, Constants.primaryPIDIDX, Constants.timoutMS);
+
+        mLeftA.configMotionAcceleration(100, Constants.timoutMS);
+        mRightA.configMotionCruiseVelocity(740, Constants.timoutMS);
     }
 
     public void initDefaultCommand(){
@@ -71,5 +76,14 @@ public class Drivetrain extends Subsystem{
         mRightA.set(ControlMode.PercentOutput, right);
         SmartDashboard.putNumber("Left Power", left);
         SmartDashboard.putNumber("Right Power", right);
+    }
+
+    public void incrementPosition(int leftDistance, int rightDistance){
+        int leftCurrent = mLeftA.getSelectedSensorPosition(1);
+        int rightCurrent = mRightA.getSelectedSensorPosition(1);
+        leftCurrent = leftCurrent + leftDistance;  
+        rightCurrent = rightCurrent + rightDistance; 
+        mLeftA.set(ControlMode.MotionMagic, leftDistance);
+        mRightA.set(ControlMode.MotionMagic, rightDistance);
     }
 }

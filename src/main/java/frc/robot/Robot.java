@@ -83,6 +83,7 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
+    //commandd k = new ...;
   }
 
   /**
@@ -98,6 +99,7 @@ public class Robot extends TimedRobot {
       default:
         // Put default auto code here
         break;
+        // Shedular.getInstance.run();
     }
   }
 

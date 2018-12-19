@@ -13,22 +13,25 @@ public class OI{
     public JoystickButton bottombutton = new JoystickButton(stick, Constants.kElevatorDown);
     public Elevator elevator = new Elevator();
     public OI(){ //CONTRUCTOR
-
     }
+
     public double getLeftXAxis(){
         return stick.getRawAxis(Constants.kJoystickLeftXAxis);
     }
+
     public double getLeftYAxis(){
         return stick.getRawAxis(Constants.kJoystickLeftYAxis);
     }
+
     public double getRightYAxis(){
         return stick.getRawAxis(Constants.kJoystickRightYAxis);
     }
+
     public double getRightXAxis(){
         return stick.getRawAxis(Constants.kJoystickRightXAxis);
     }
+    
     public void initJoystick() {
         //topbutton.whileHeld();
     }
 }
-
